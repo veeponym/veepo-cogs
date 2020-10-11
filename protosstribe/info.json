@@ -1,0 +1,13 @@
+{
+	"author": [
+		"dsmoth"
+	],
+	"description": "Find your Protoss tribe",
+	"hidden": false,
+	"install_msg": "Thanks for installing, have fun.",
+	"short": "Find your Protoss tribe",
+	"tags": [
+		"bots"
+	],
+	"type": "COG"
+}
