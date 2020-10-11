@@ -60,9 +60,10 @@ class Pottermore(commands.Cog):
         if is_lookup:
             member = ctx.guild.get_member_named(user)
             if not member:
-                member = ctx.message.mentions[0]
-            if not member:
-                await ctx.send('No wizard by that name was found')
+                try:
+                    member = ctx.message.mentions[0]
+                except IndexError:
+                    await ctx.send('No wizard by that name was found')
             user = self.config.user(member)
         else:
             user = self.config.user(ctx.author)
