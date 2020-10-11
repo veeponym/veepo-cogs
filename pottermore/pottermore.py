@@ -58,8 +58,7 @@ class Pottermore(commands.Cog):
         """Find your Harry Potter House"""
         is_lookup = bool(user)
         if is_lookup:
-            member = discord.utils.get(ctx.guild.members, name=user, discriminator="1111")
-            user = self.config.user(ctx.guild.get_member(member))
+            user = self.config.user(ctx.guild.get_member_named(user))
         else:
             user = self.config.user(ctx.author)
         if await user.house() is None:
