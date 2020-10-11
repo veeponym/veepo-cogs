@@ -58,9 +58,9 @@ class Pottermore(commands.Cog):
         """Find your Harry Potter House"""
         is_lookup = bool(user)
         if is_lookup:
-            user = await self.config.user(user)
+            user = self.config.user(user)
         else:
-            user = await self.config.user(ctx.author)
+            user = self.config.user(ctx.author)
         if await user.house() is None:
             if is_lookup:
                 ctx.send("That wizard has not yet been sorted")
