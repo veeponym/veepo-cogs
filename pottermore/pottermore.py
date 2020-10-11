@@ -58,7 +58,7 @@ class Pottermore(commands.Cog):
         """Find your Harry Potter House"""
         is_lookup = bool(user)
         if is_lookup:
-            user = self.config.user(user)
+            user = self.config.user(ctx.guild.get_member(user))
         else:
             user = self.config.user(ctx.author)
         if await user.house() is None:
