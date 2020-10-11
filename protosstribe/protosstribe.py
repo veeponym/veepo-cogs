@@ -63,7 +63,7 @@ class ProtossTribe(commands.Cog):
                     await ctx.send('No user by that name was found')
                     return
         else:
-            member = self.config.user(ctx.author)
+            member = ctx.author
         tribe = self.get_tribe(member.id)
         color = await ctx.embed_color()
         if tribe == "Khalai":
