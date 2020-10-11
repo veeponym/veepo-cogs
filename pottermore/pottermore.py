@@ -60,7 +60,7 @@ class Pottermore(commands.Cog):
         if is_lookup:
             member = ctx.guild.get_member_named(user)
             if not user:
-                member = ctx.guild.get_member(user)
+                member = ctx.message.mentions[0]
             user = self.config.user(member)
         else:
             user = self.config.user(ctx.author)
