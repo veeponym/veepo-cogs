@@ -1,4 +1,5 @@
 import contextlib
+import hashlib
 
 from redbot.core import commands, Config
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
@@ -39,13 +40,14 @@ class ProtossTribe(commands.Cog):
         self.config.register_user(**default_user)
 
     def get_tribe(self, inp):
-        inp = str(inp)
         houses = {
             '00': 'Khalai',
             '01': 'Nerazim',
             '10': "Tal'darim",
             '11': 'Purifiers'
         }
+        inp = str.encode(str(inp), 'utf-8')
+        sha224 = hashlib.sha224(inp)
         key = bin(hash(inp))[-2:]
         return houses[key]
 
