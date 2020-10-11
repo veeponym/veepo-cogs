@@ -1,0 +1,10 @@
+{
+    "author": ["Veepo"],
+    "name": "Veepo's Cogs",
+    "install_msg": "Thanks for installing my repo!",
+    "short": "General purpose cogs",
+    "description": "A bunch of general purpose cogs",
+    "tags": [
+    "information"
+    ]
+}
