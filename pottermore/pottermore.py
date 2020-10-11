@@ -60,7 +60,7 @@ class Pottermore(commands.Cog):
         if is_lookup:
             member = ctx.guild.get_member_named(user)
             print('FIRST MEMBER LOOKUP', member)
-            if not user:
+            if not member:
                 member = ctx.message.mentions[0]
                 print('SECOND MEMBER LOOKUP', member)
             user = self.config.user(member)
