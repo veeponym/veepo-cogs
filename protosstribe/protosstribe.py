@@ -39,7 +39,7 @@ class ProtossTribe(commands.Cog):
 
         self.config.register_user(**default_user)
 
-    def get_tribe(inp):
+    def get_tribe(self, inp):
         houses = {
             '00': 'Khalai',
             '01': 'Nerazim',
