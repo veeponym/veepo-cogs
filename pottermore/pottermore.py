@@ -59,10 +59,10 @@ class Pottermore(commands.Cog):
         is_lookup = bool(user)
         if is_lookup:
             member = ctx.guild.get_member_named(user)
-            print('FIRST MEMBER LOOKUP', member)
             if not member:
                 member = ctx.message.mentions[0]
-                print('SECOND MEMBER LOOKUP', member)
+            if not member:
+                ctx.send('No wizard by that name was found')
             user = self.config.user(member)
         else:
             user = self.config.user(ctx.author)
