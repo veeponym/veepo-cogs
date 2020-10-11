@@ -69,9 +69,6 @@ class Pottermore(commands.Cog):
         else:
             user = self.config.user(ctx.author)
         if await user.house() is None:
-            if is_lookup:
-                await ctx.send("That wizard has not yet been sorted")
-                return
             async with self.session.get("https://www.potterapi.com/v1/sortinghat") as r:
                 data = await r.json()
             house = data
