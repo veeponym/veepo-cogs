@@ -62,13 +62,13 @@ class Pottermore(commands.Cog):
             if not member:
                 member = ctx.message.mentions[0]
             if not member:
-                ctx.send('No wizard by that name was found')
+                await ctx.send('No wizard by that name was found')
             user = self.config.user(member)
         else:
             user = self.config.user(ctx.author)
         if await user.house() is None:
             if is_lookup:
-                ctx.send("That wizard has not yet been sorted")
+                await ctx.send("That wizard has not yet been sorted")
                 return
             async with self.session.get("https://www.potterapi.com/v1/sortinghat") as r:
                 data = await r.json()
