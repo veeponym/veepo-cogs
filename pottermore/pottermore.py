@@ -64,6 +64,7 @@ class Pottermore(commands.Cog):
                     member = ctx.message.mentions[0]
                 except IndexError:
                     await ctx.send('No wizard by that name was found')
+                    return
             user = self.config.user(member)
         else:
             user = self.config.user(ctx.author)
