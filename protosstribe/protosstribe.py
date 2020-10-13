@@ -102,9 +102,18 @@ class ProtossTribe(commands.Cog):
             ctx.send("Invalid tribe")
             return
         await member_config.tribe.set(tribe)
-        await member.remove_roles("Khalai","Nerazim","Tal'darim","Purifiers")
+        for existing_tribe in [i for i in {"Khalai", "Nerazim", "Tal'darim", "Purifiers"} if i in ctx.author.roles]:
+            self._role(ctx, existing_tribe)
+        self._role(ctx, tribe)
         await member.add_roles(tribe)
         await ctx.send(embed=embed)
+
+    @discord.bot.command(name="role")
+    async def _role(self, ctx, role: discord.Role):
+        if role in ctx.author.roles:
+            await ctx.author.remove_roles(role)
+        else:
+            await ctx.author.add_roles(role)
 
     def cog_unload(self):
         self.bot.loop.create_task(self.session.close())
