@@ -102,6 +102,8 @@ class ProtossTribe(commands.Cog):
             ctx.send("Invalid tribe")
             return
         await member_config.tribe.set(tribe)
+        await member.remove_roles("Khalai","Nerazim","Tal'darim","Purifiers")
+        await member.add_roles(tribe)
         await ctx.send(embed=embed)
 
     def cog_unload(self):
