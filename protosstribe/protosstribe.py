@@ -2,6 +2,7 @@ import contextlib
 import zlib
 
 from redbot.core import commands, Config
+from redbot.core.utils.mod import check_permissions
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from typing import Literal
 import discord
@@ -40,20 +41,19 @@ class ProtossTribe(commands.Cog):
         self.config.register_user(**default_user)
 
     def get_tribe(self, inp):
-        houses = {
-            '00': 'Khalai',
-            '01': 'Nerazim',
-            '10': "Tal'darim",
-            '11': 'Purifiers'
-        }
-        inp = str.encode(str(inp), 'utf-8')
-        adler = zlib.adler32(inp)
-        key = bin(adler)[-2:]
-        return houses[key]
+        rng = random.Random(inp)
+        print(inp)
+        tribes = [
+            'Khalai',
+            'Nerazim',
+            "Tal'darim",
+            'Purifiers'
+        ]
+        return rng.choice(tribes)
 
     @commands.bot_has_permissions(embed_links=True)
     @commands.command()
-    async def tribesort(self, ctx, user=None):
+    async def tribesort(self, ctx, user=None, tribe=None):
         """Find your Protoss Tribe"""
         is_lookup = bool(user)
         if is_lookup:
@@ -66,7 +66,9 @@ class ProtossTribe(commands.Cog):
                     return
         else:
             member = ctx.author
-        tribe = self.get_tribe(member.id)
+        is_owner = check_permissions(ctx.author)
+        if not is_owner or not tribe:
+            tribe = self.get_tribe(member.id)
         color = await ctx.embed_color()
         if tribe == "Khalai":
             image = khalai
