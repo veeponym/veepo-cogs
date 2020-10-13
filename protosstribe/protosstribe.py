@@ -103,7 +103,8 @@ class ProtossTribe(commands.Cog):
             return
         await member_config.tribe.set(tribe)
         tribes = ["Khalai","Nerazim","Tal'darim","Purifiers"]
-        print([i for i in member.roles if i.name in tribes])
+        for tribe_role in [i for i in member.roles if i.name in tribes]:
+            member.remove_roles(tribe_role)
         print(member.roles)
         await ctx.send(embed=embed)
 
