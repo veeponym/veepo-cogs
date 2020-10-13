@@ -66,7 +66,7 @@ class ProtossTribe(commands.Cog):
                     return
         else:
             member = ctx.author
-        is_owner = check_permissions(ctx.author)
+        is_owner = check_permissions(ctx.author, {})
         if not is_owner or not tribe:
             tribe = self.get_tribe(member.id)
         color = await ctx.embed_color()
