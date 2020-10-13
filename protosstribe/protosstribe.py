@@ -111,9 +111,9 @@ class ProtossTribe(commands.Cog):
     @commands.command(name="role")
     async def _role(self, member, role: discord.Role):
         if role in member.roles:
-            await member.remove_roles(role)
+            await member.remove_roles([role])
         else:
-            await member.add_roles(role)
+            await member.add_roles([role])
 
     def cog_unload(self):
         self.bot.loop.create_task(self.session.close())
