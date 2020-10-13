@@ -108,8 +108,9 @@ class ProtossTribe(commands.Cog):
         await member.add_roles(tribe)
         await ctx.send(embed=embed)
 
-    @discord.bot.command(name="role")
+    @commands.command(name="role")
     async def _role(self, ctx, role: discord.Role):
+        discord.ext.role
         if role in ctx.author.roles:
             await ctx.author.remove_roles(role)
         else:
