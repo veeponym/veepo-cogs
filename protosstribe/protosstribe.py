@@ -67,7 +67,7 @@ class ProtossTribe(commands.Cog):
         else:
             member = ctx.author
         member_config = self.config.user(member)
-        is_owner = check_permissions(ctx.author, {})
+        is_owner = await check_permissions(ctx.author, {})
         if not is_owner or not tribe:
             if await member_config.tribe() is None:
                 tribe = self.get_tribe_from_string(member.id)
