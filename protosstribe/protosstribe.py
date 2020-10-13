@@ -104,6 +104,7 @@ class ProtossTribe(commands.Cog):
         await member_config.tribe.set(tribe)
         tribes = ["Khalai","Nerazim","Tal'darim","Purifiers"]
         print([i for i in tribes if i in member.roles])
+        print(member.roles)
         await ctx.send(embed=embed)
 
     def cog_unload(self):
