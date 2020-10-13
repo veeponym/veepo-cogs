@@ -14,9 +14,6 @@ khalai = 'https://static.wikia.nocookie.net/starcraft/images/5/5d/Khalai_SC2-Lot
 nerazim = 'https://static.wikia.nocookie.net/starcraft/images/c/c1/Nerazim_SC2-LotV_Logo1.jpg'
 taldarim = 'https://static.wikia.nocookie.net/starcraft/images/6/6a/Tal%27darim_SC2-LotV_Logo2.jpg'
 purifiers = 'https://static.wikia.nocookie.net/starcraft/images/6/62/Purifiers_SC2-LotV_Logo1.jpg'
-from discord.ext import commands
-
-bot = commands.Bot(command_prefix='!')
 
 class ProtossTribe(commands.Cog):
     """Lookup information about the Harry Potter Universe"""
@@ -111,7 +108,7 @@ class ProtossTribe(commands.Cog):
         await member.add_roles(tribe)
         await ctx.send(embed=embed)
 
-    @bot.command(name="role")
+    @discord.bot.command(name="role")
     async def _role(self, ctx, role: discord.Role):
         if role in ctx.author.roles:
             await ctx.author.remove_roles(role)
