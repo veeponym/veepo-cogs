@@ -106,6 +106,8 @@ class ProtossTribe(commands.Cog):
         for tribe_role in [i for i in member.roles if i.name in tribes]:
             print(tribe_role)
             await member.remove_roles(tribe_role)
+        print(discord.utils.get(ctx.guild.roles, name=tribe))
+        await member.add_roles(discord.utils.get(ctx.guild.roles, name=tribe))
         await ctx.send(embed=embed)
 
     def cog_unload(self):
