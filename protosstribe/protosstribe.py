@@ -101,14 +101,15 @@ class ProtossTribe(commands.Cog):
         else:
             ctx.send("Invalid tribe")
             return
-        await member_config.tribe.set(tribe)
-        tribes = ["Khalai","Nerazim","Tal'darim","Purifiers"]
-        for tribe_role in [i for i in member.roles if i.name in tribes]:
-            print(tribe_role)
-            await member.remove_roles(tribe_role)
-        new_tribe_role = discord.utils.get(ctx.guild.roles, name=tribe)
-        if new_tribe_role:
-            await member.add_roles(discord.utils.get(ctx.guild.roles, name=tribe))
+        if is_owner:
+            await member_config.tribe.set(tribe)
+            tribes = ["Khalai","Nerazim","Tal'darim","Purifiers"]
+            for tribe_role in [i for i in member.roles if i.name in tribes]:
+                print(tribe_role)
+                await member.remove_roles(tribe_role)
+            new_tribe_role = discord.utils.get(ctx.guild.roles, name=tribe)
+            if new_tribe_role:
+                await member.add_roles(discord.utils.get(ctx.guild.roles, name=tribe))
         await ctx.send(embed=embed)
 
     def cog_unload(self):
