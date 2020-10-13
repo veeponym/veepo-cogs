@@ -40,7 +40,7 @@ class ProtossTribe(commands.Cog):
 
         self.config.register_user(**default_user)
 
-    def get_tribe(self, inp):
+    def get_tribe_from_string(self, inp):
         rng = random.Random(inp)
         print(inp)
         tribes = [
@@ -66,9 +66,13 @@ class ProtossTribe(commands.Cog):
                     return
         else:
             member = ctx.author
+        member_config = self.config.user(member)
         is_owner = check_permissions(ctx.author, {})
         if not is_owner or not tribe:
-            tribe = self.get_tribe(member.id)
+            if await member_config.tribe() is None:
+                tribe = self.get_tribe_from_string(member.id)
+            else:
+                tribe = await member_config.tribe()
         color = await ctx.embed_color()
         if tribe == "Khalai":
             image = khalai
@@ -76,24 +80,28 @@ class ProtossTribe(commands.Cog):
                 title="Find your Protoss Tribe", description=tribe, color=color
             )
             embed.set_thumbnail(url=image)
-        if tribe == "Nerazim":
+        elif tribe == "Nerazim":
             image = nerazim
             embed = discord.Embed(
                 title="Find your Protoss Tribe", description=tribe, color=color
             )
             embed.set_thumbnail(url=image)
-        if tribe == "Tal'darim":
+        elif tribe == "Tal'darim":
             image = taldarim
             embed = discord.Embed(
                 title="Find your Protoss Tribe", description=tribe, color=color
             )
             embed.set_thumbnail(url=image)
-        if tribe == "Purifiers":
+        elif tribe == "Purifiers":
             image = purifiers
             embed = discord.Embed(
                 title="Find your Protoss Tribe", description=tribe, color=color
             )
             embed.set_thumbnail(url=image)
+        else:
+            ctx.send("Invalid tribe")
+            return
+        await member_config.tribe.set(tribe)
         await ctx.send(embed=embed)
 
     def cog_unload(self):
