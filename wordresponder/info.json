@@ -1,0 +1,13 @@
+{
+	"author": [
+		"dsmoth"
+	],
+	"description": "Respond to a specified word with a specified response",
+	"hidden": false,
+	"install_msg": "Thanks for installing, have fun.",
+	"short": "Respond to a specified word with a specified response",
+	"tags": [
+		"bots"
+	],
+	"type": "COG"
+}
