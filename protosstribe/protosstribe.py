@@ -14,6 +14,7 @@ khalai = 'https://static.wikia.nocookie.net/starcraft/images/5/5d/Khalai_SC2-Lot
 nerazim = 'https://static.wikia.nocookie.net/starcraft/images/c/c1/Nerazim_SC2-LotV_Logo1.jpg'
 taldarim = 'https://static.wikia.nocookie.net/starcraft/images/6/6a/Tal%27darim_SC2-LotV_Logo2.jpg'
 purifiers = 'https://static.wikia.nocookie.net/starcraft/images/6/62/Purifiers_SC2-LotV_Logo1.jpg'
+xelnaga = 'https://vignette.wikia.nocookie.net/starcraftrpg/images/0/07/Xel%27Naga_Art.png'
 
 class ProtossTribe(commands.Cog):
     """Lookup information about the Harry Potter Universe"""
@@ -98,12 +99,19 @@ class ProtossTribe(commands.Cog):
                 title="Find your Protoss Tribe", description=tribe, color=color
             )
             embed.set_thumbnail(url=image)
+        elif tribe == "Xel'Naga":
+            image = xelnaga
+            embed = discord.Embed(
+                title="Find your Protoss Tribe", description=tribe, color=color
+            )
+            embed.set_thumbnail(url=image)
         else:
             ctx.send("Invalid tribe")
             return
         if is_owner:
             await member_config.tribe.set(tribe)
-            tribes = ["Khalai","Nerazim","Tal'darim","Purifiers"]
+            tribes = ["Khalai","Nerazim","Tal'darim","Purifiers",
+                      "Xel'Naga"]
             for tribe_role in [i for i in member.roles if i.name in tribes]:
                 print(tribe_role)
                 await member.remove_roles(tribe_role)
