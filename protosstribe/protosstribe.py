@@ -41,9 +41,8 @@ class ProtossTribe(commands.Cog):
 
         self.config.register_user(**default_user)
 
-    def get_tribe_from_string(self, inp):
+    def _get_tribe_from_string(self, inp):
         rng = random.Random(inp)
-        print(inp)
         tribes = [
             'Khalai',
             'Nerazim',
@@ -51,6 +50,18 @@ class ProtossTribe(commands.Cog):
             'Purifiers'
         ]
         return rng.choice(tribes)
+
+    def get_tribe_from_string(self, inp):
+        houses = {
+            '00': 'Khalai',
+            '01': 'Nerazim',
+            '10': "Tal'darim",
+            '11': 'Purifiers'
+        }
+        inp = str.encode(str(inp), 'utf-8')
+        adler = zlib.adler32(inp)
+        key = bin(adler)[-2:]
+        return houses[key]
 
     @commands.bot_has_permissions(embed_links=True)
     @commands.command()
